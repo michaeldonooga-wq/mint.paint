@@ -1,0 +1,23 @@
+        private void UpdateTextParameters()
+        {
+            var font = TextFontComboBox.SelectedItem?.ToString() ?? "Arial";
+            if (!double.TryParse(TextSizeComboBox.Text, out double size) || size < 1)
+            {
+                size = 24;
+            }
+            var bold = TextBoldButton.IsChecked == true;
+            var italic = TextItalicButton.IsChecked == true;
+            var underline = TextUnderlineButton.IsChecked == true;
+            var strikethrough = TextStrikethroughButton.IsChecked == true;
+            var alignment = TextAlignmentCombo.SelectedIndex switch { 1 => TextAlignment.Center, 2 => TextAlignment.Right, _ => TextAlignment.Left };
+            var opacity = (byte)(TextOpacitySlider.Value * 255 / 100);
+            
+            drawingManager.SetTextParameters(font, (float)size, bold, italic, underline, strikethrough);
+            drawingManager.SetTextAlignment(alignment);
+            drawingManager.SetTextOpacity(opacity);
+            
+            if (drawingManager.IsTextInputActive())
+            {
+                HiddenTextInput.Focus();
+            }
+        }

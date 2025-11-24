@@ -1,0 +1,179 @@
+﻿<Window x:Class="mint.paint.PresetsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Пресеты кистей и шрифтов"
+        Width="400" Height="500"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStyle="ToolWindow"
+        Topmost="True" Background="{DynamicResource WindowBackground}">
+
+    <Window.Resources>
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border Name="Border" Background="{DynamicResource WindowBackground}" BorderBrush="Gray" BorderThickness="1,1,1,0" Padding="10,5">
+                            <ContentPresenter ContentSource="Header" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource WindowBackground}"/>
+                                <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton" Background="{DynamicResource WindowBackground}" BorderBrush="Gray" BorderThickness="1" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press"/>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Margin="5,3,23,3" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                <Grid Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="200">
+                                    <Border Background="{DynamicResource WindowBackground}" BorderBrush="Gray" BorderThickness="1"/>
+                                    <ScrollViewer Margin="1" SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="{DynamicResource WindowBackground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border Name="Border" Background="{DynamicResource WindowBackground}" Padding="5,3">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Вкладки -->
+        <TabControl Grid.Row="0">
+            <TabItem x:Name="BrushesTab" Header="Кисти">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <TextBlock x:Name="BrushPresetsLabel" Text="Пресеты кистей" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <!-- Кисти -->
+                        <GroupBox x:Name="BrushesGroup" Header="Кисти" Margin="0,0,0,10">
+                            <WrapPanel Margin="5">
+                                <Button x:Name="WatercolorButton" Content="💧 Акварель" Tag="watercolor" Click="BrushPreset_Click" 
+                                       Margin="2" Padding="10,5"/>
+                                <Button x:Name="NormalButton" Content="🖌 Обычная" Tag="normal" Click="BrushPreset_Click" 
+                                       Margin="2" Padding="10,5"/>
+                                <Button x:Name="PencilButton" Content="✏️ Карандаш" Tag="pencil" Click="BrushPreset_Click" 
+                                       Margin="2" Padding="10,5"/>
+                                <Button x:Name="PixelButton" Content="⬛ Пиксели" Tag="pixel" Click="BrushPreset_Click" 
+                                       Margin="2" Padding="10,5"/>
+                                <Button x:Name="DropsButton" Content="💦 Капли" Tag="drops" Click="BrushPreset_Click" 
+                                       Margin="2" Padding="10,5"/>
+                            </WrapPanel>
+                        </GroupBox>
+
+                        <!-- Пользовательские кисти -->
+                        <GroupBox x:Name="CustomBrushesGroup" Header="Пользовательские кисти">
+                            <StackPanel Margin="5">
+                                <Button x:Name="CreatePresetButton" Content="➕ Создать пресет" Click="CreatePreset_Click" 
+                                       Margin="0,0,0,5" Padding="5"/>
+                                <ListBox x:Name="CustomBrushesListBox" Height="100">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" Margin="2"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem x:Name="FontsTab" Header="Шрифты">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10">
+                        <TextBlock x:Name="TextSettingsLabel" Text="Настройки текста" FontWeight="Bold" Margin="0,0,0,10"/>
+
+                        <!-- Шрифты -->
+                        <GroupBox x:Name="FontGroup" Header="Шрифт" Margin="0,0,0,10">
+                            <StackPanel Margin="5">
+                                <ComboBox x:Name="FontFamilyComboBox" SelectionChanged="FontFamily_SelectionChanged"
+                                         Margin="0,0,0,5"/>
+                                <Button x:Name="LoadFontButton" Content="Загрузить шрифт..." Click="LoadFont_Click" Margin="0,0,0,5"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox x:Name="BoldCheckBox" Content="Жирный" Margin="0,0,10,0"
+                                             Checked="FontStyle_Changed" Unchecked="FontStyle_Changed"/>
+                                    <CheckBox x:Name="ItalicCheckBox" Content="Курсив" 
+                                             Checked="FontStyle_Changed" Unchecked="FontStyle_Changed"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Размер -->
+                        <GroupBox x:Name="TextSizeGroup" Header="Размер текста" Margin="0,0,0,10">
+                            <StackPanel Margin="5">
+                                <Slider x:Name="FontSizeSlider" Minimum="8" Maximum="72" Value="24"
+                                       ValueChanged="FontSize_Changed"/>
+                                <TextBlock x:Name="FontSizeText" Text="24px" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Выравнивание -->
+                        <GroupBox x:Name="AlignmentGroup" Header="Выравнивание">
+                            <StackPanel Margin="5">
+                                <RadioButton x:Name="AlignLeftRadio" Content="По левому краю" GroupName="TextAlign"
+                                           Checked="TextAlign_Changed" IsChecked="True"/>
+                                <RadioButton x:Name="AlignCenterRadio" Content="По центру" GroupName="TextAlign"
+                                           Checked="TextAlign_Changed"/>
+                                <RadioButton x:Name="AlignRightRadio" Content="По правому краю" GroupName="TextAlign"
+                                           Checked="TextAlign_Changed"/>
+                            </StackPanel>
+                        </GroupBox>
+
+                        <!-- Превью текста -->
+                        <Border BorderBrush="LightGray" BorderThickness="1" Margin="0,10,0,0" Padding="10">
+                            <TextBlock x:Name="TextPreview" Text="Пример текста" FontSize="24" 
+                                      HorizontalAlignment="Center"/>
+                        </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+
+        <!-- Кнопки управления -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button x:Name="ApplyButton" Content="Применить" Click="ApplyButton_Click" Padding="10,5" Margin="0,0,10,0"/>
+            <Button x:Name="CancelButton" Content="Отмена" Click="CancelButton_Click" Padding="10,5"/>
+        </StackPanel>
+    </Grid>
+</Window>

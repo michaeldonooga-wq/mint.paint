@@ -1,0 +1,55 @@
+<Window x:Class="mint.paint.LayerEffectsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Эффекты слоя" Width="350" Height="450"
+        WindowStyle="ToolWindow" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="10">
+            <!-- Drop Shadow -->
+            <GroupBox x:Name="ShadowGroup" Header="Тень" Margin="0,0,0,10">
+                <StackPanel Margin="5">
+                    <CheckBox x:Name="DropShadowEnabled" Content="Включить" Margin="0,0,0,5"/>
+                    <TextBlock x:Name="ShadowColorLabel" Text="Цвет:"/>
+                    <Border x:Name="ShadowColorBox" Width="50" Height="25" BorderBrush="Gray" BorderThickness="1" Margin="0,5" Cursor="Hand" MouseDown="ShadowColorBox_Click"/>
+                    <TextBlock x:Name="ShadowOffsetXLabel" Text="Смещение X:"/>
+                    <Slider x:Name="ShadowOffsetX" Minimum="-50" Maximum="50" Value="5" Margin="0,5"/>
+                    <TextBlock x:Name="ShadowOffsetYLabel" Text="Смещение Y:"/>
+                    <Slider x:Name="ShadowOffsetY" Minimum="-50" Maximum="50" Value="5" Margin="0,5"/>
+                    <TextBlock x:Name="ShadowBlurLabel" Text="Размытие:"/>
+                    <Slider x:Name="ShadowBlur" Minimum="0" Maximum="50" Value="5" Margin="0,5"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Outer Glow -->
+            <GroupBox x:Name="GlowGroup" Header="Внешнее свечение" Margin="0,0,0,10">
+                <StackPanel Margin="5">
+                    <CheckBox x:Name="OuterGlowEnabled" Content="Включить" Margin="0,0,0,5"/>
+                    <TextBlock x:Name="GlowColorLabel" Text="Цвет:"/>
+                    <Border x:Name="GlowColorBox" Width="50" Height="25" BorderBrush="Gray" BorderThickness="1" Margin="0,5" Cursor="Hand" MouseDown="GlowColorBox_Click"/>
+                    <TextBlock x:Name="GlowSizeLabel" Text="Размер:"/>
+                    <Slider x:Name="GlowSize" Minimum="0" Maximum="50" Value="10" Margin="0,5"/>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Bevel 3D -->
+            <GroupBox x:Name="BevelGroup" Header="3D эффект" Margin="0,0,0,10">
+                <StackPanel Margin="5">
+                    <CheckBox x:Name="BevelEnabled" Content="Включить" Margin="0,0,0,5"/>
+                    <TextBlock x:Name="BevelTypeLabel" Text="Тип:"/>
+                    <ComboBox x:Name="BevelTypeCombo" Margin="0,5">
+                        <ComboBoxItem x:Name="EmbossItem" Content="Выпуклость" Tag="Emboss" IsSelected="True"/>
+                        <ComboBoxItem x:Name="EngraveItem" Content="Углубление" Tag="Engrave"/>
+                    </ComboBox>
+                    <TextBlock x:Name="BevelDepthLabel" Text="Глубина:"/>
+                    <Slider x:Name="BevelDepth" Minimum="1" Maximum="10" Value="5" Margin="0,5"/>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                <Button x:Name="OKButton" Content="OK" Width="80" Margin="0,0,5,0" Click="OK_Click"/>
+                <Button x:Name="CancelButton" Content="Отмена" Width="80" Click="Cancel_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Window>

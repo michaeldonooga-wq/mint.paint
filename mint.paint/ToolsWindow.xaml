@@ -1,0 +1,12 @@
+﻿<Window x:Class="mint.paint.ToolsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Инструменты"
+        WindowStyle="ToolWindow"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Topmost="True"
+        Width="70" 
+        Height="389"
+        Background="{DynamicResource WindowBackground}">
+</Window>

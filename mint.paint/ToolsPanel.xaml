@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl x:Class="mint.paint.ToolsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Width="60"
+             Background="Transparent">
+
+    <Border Background="White" BorderBrush="LightGray" BorderThickness="1" CornerRadius="2">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="Transparent">
+            <StackPanel Margin="4">
+                <TextBlock Text="Tools" FontWeight="Bold" FontSize="10" HorizontalAlignment="Center" Margin="0,4,0,8" Foreground="DarkGray"/>
+                
+                <Button x:Name="BrushButton" Tag="Brush" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Кисть (B)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🖌" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Brush" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="EraserButton" Tag="Eraser" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Ластик (E)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🧹" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Eraser" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="FillButton" Tag="Fill" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Заливка (G)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🪣" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Fill" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="EyedropperButton" Tag="Eyedropper" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Пипетка (I)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🧪" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Pipette" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Separator Margin="4,8" Height="1"/>
+                
+                <Button x:Name="ShapesButton" Tag="Line" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Фигуры">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="□" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Shapes" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="TextButton" Tag="Text" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Текст (T)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🅰" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Text" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="GradientButton" Tag="Gradient" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Градиент (G)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🌈" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Grad" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Separator Margin="4,8" Height="1"/>
+                
+                <Button x:Name="SelectionButton" Tag="Selection" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Прямоугольное выделение (S)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="▭" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Rect" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="EllipseSelectionButton" Tag="EllipseSelection" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Эллипсное выделение">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="◯" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Ellipse" FontSize="8" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="LassoButton" Tag="Lasso" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Лассо">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="✂" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Lasso" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="MagicWandButton" Tag="MagicWand" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Волшебная палочка (W)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🪄" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Wand" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="SelectionMoveButton" Tag="SelectionMove" Height="32" Margin="2" Click="ToolButton_Click" ToolTip="Перемещение выделения (V)">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="↔" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Move" FontSize="9" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Separator Margin="4,8" Height="1"/>
+                
+                <Button x:Name="PresetsButton" Height="32" Margin="2" Click="PresetsButton_Click" ToolTip="Пресеты кистей">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🎨" FontSize="12" Margin="0,0,4,0"/>
+                        <TextBlock Text="Presets" FontSize="8" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button x:Name="ClearButton" Height="28" Margin="2" Click="ClearButton_Click" ToolTip="Очистить холст" Background="#ffebee" BorderBrush="#ffcdd2">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🗑️" FontSize="10" Margin="0,0,4,0"/>
+                        <TextBlock Text="Clear" FontSize="8" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
+    </Border>
+</UserControl>
